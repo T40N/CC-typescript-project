@@ -42,10 +42,31 @@ p {
     margin: 16%;
 }
 
+.game-card{
+    margin-top: 40px;
+    margin-left: 90px;
+    height: 450px;
+    width: 450px;
+    border-radius: 50%;
+    background-color: var(--blue-light);
+}
+
 .container-flex {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.container-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.container-row h1 {
+    font-size: 144px;
+    margin: 0;
 }
 
 .buttons{
@@ -70,6 +91,14 @@ p {
     font-weight: bold;
 }
 
+.small{
+    width: 264px;
+    height: 94px;
+    margin-left: 90px;
+    margin-right: 150px;
+    margin-top: 54px;
+}
+
 .btn p {
     margin: 15%;
 }
@@ -78,9 +107,33 @@ p {
     box-shadow: inset 7px 10px 4px rgba(0, 0, 0, 0.25);
 }
 
-.score{
-    margin-right: 395px;
+.score-display{
+    display: block;
+    width: 430px;
+    height: 148px;
+    background: #127681;
+    box-shadow: 0;
+    border-radius: 50px;
+    font-weight: 800;
+    border: none;
+    text-decoration: none;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--gold);
 }
+
+#timer {
+    margin-left: 150px;
+    margin-right: 90px;
+}
+
+.game-tab{
+    display: flex;
+    justify-content: space-between;
+}
+
+
 
 /* secendary styles */
 
