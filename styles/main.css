@@ -158,6 +158,14 @@ p {
     height: 5rem;
     margin: 2rem;
     background-color:var(--gold);
-    grid-area: first;
     font-size: 5rem;
+    padding: 0;
+    border: 0;
+
+}
+.correct{
+    color: green;
+}
+.inCorrect{
+    color: red;
 }
