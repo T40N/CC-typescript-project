@@ -49,6 +49,9 @@ p {
     width: 450px;
     border-radius: 50%;
     background-color: var(--blue-light);
+    display: grid;
+    grid-template-columns: 33% auto 33%;
+    grid-template-rows: 33% auto 33%;
 }
 
 .container-flex {
@@ -139,4 +142,21 @@ p {
 
 .pr-gold{
     color: var(--gold);
+}
+
+
+
+.firstColumn, .thirdColumn{
+    margin-top: 6rem;
+
+}
+.secColumn{
+    margin-top: 2rem;
+}
+.icon{
+    width: 5rem;
+    height: 5rem;
+    margin: 2rem;
+    background-color:var(--gold);
+    grid-area: first;
 }
