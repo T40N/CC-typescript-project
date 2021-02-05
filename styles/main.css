@@ -159,4 +159,5 @@ p {
     margin: 2rem;
     background-color:var(--gold);
     grid-area: first;
+    font-size: 5rem;
 }
