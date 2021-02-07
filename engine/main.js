@@ -166,10 +166,11 @@ function getCard(card) {
     var newCard = [];
     while (newCard.length < 8) {
         var c = iconClasses[Math.floor(Math.random() * (iconClasses.length))];
-        if (c != match && newCard.indexOf(c) == -1)
+        if (c != match && newCard.indexOf(c) == -1 && card.indexOf(c) == -1)
             newCard.push(c);
     }
     newCard[Math.floor(Math.random() * (newCard.length))] = match;
+    console.log(card, newCard);
     return { match: match, items: newCard };
 }
 function renderCard(cardNum, icons, checkClick) {
