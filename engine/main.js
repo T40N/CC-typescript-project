@@ -184,10 +184,6 @@ function renderCard(cardNum, icons, checkClick) {
         container.appendChild(icon);
         icon.setAttribute('class', item);
         container.setAttribute('id', `icon${items.indexOf(item)}`);
-        // icon.style.fontSize = '50px';
-        // container.style.width = '50px';
-        // container.style.height = '50px';
-        // container.style.margin = '10px';
         container.addEventListener('click', function () {
             checkClick(item, cardNum);
         });
