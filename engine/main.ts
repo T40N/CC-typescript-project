@@ -169,7 +169,7 @@ function getCard(card: string[]){
    while(newCard.length<8){
       let c=iconClasses[Math.floor(Math.random()*(iconClasses.length))]
 
-      if(c!=match && newCard.indexOf(c)==-1)
+      if(c!=match && newCard.indexOf(c)==-1 && card.indexOf(c)==-1)
          newCard.push(c)
    }
 

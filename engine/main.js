@@ -6,7 +6,7 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
     return r;
 };
 var iconClasses = [
-    "devicon-aftereffects-plaind colored",
+    "devicon-aftereffects-plain colored",
     "devicon-amazonwebservices-original colored",
     "devicon-android-plain colored",
     "devicon-angularjs-plain colored",
@@ -159,14 +159,14 @@ var iconClasses = [
     "devicon-yarn-plain colored",
     "devicon-yii-plain colored",
     "devicon-yunohost-plain colored",
-    "devicon-zend-plai colored"
+    "devicon-zend-plain colored"
 ];
 function getCard(card) {
     var match = card[Math.floor(Math.random() * (card.length))];
     var newCard = [];
     while (newCard.length < 8) {
         var c = iconClasses[Math.floor(Math.random() * (iconClasses.length))];
-        if (c != match && newCard.indexOf(c) == -1)
+        if (c != match && newCard.indexOf(c) == -1 && card.indexOf(c) == -1)
             newCard.push(c);
     }
     newCard[Math.floor(Math.random() * (newCard.length))] = match;

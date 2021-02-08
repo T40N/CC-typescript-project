@@ -1,5 +1,5 @@
 const iconClasses=[
-   "devicon-aftereffects-plaind colored",
+   "devicon-aftereffects-plain colored",
    "devicon-amazonwebservices-original colored",
    "devicon-android-plain colored",
    "devicon-angularjs-plain colored",
@@ -152,7 +152,7 @@ const iconClasses=[
    "devicon-yarn-plain colored",
    "devicon-yii-plain colored",
    "devicon-yunohost-plain colored",
-   "devicon-zend-plai coloredn"
+   "devicon-zend-plain colored"
 ];
 
 module.exports={iconClasses}
