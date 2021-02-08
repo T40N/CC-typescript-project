@@ -152,96 +152,64 @@ p {
 }
 
 #icon0{
-    width: 5rem;
-    height: 5rem;
     margin: 2rem;
     font-size: 5rem;
-    padding: 0;
-    border: 0;
     grid-column-start: 1;
     grid-column-end: col2-start;
     grid-row-start: 2;
     grid-row-end: row3-start;
 }
 #icon1{
-    width: 5rem;
-    height: 5rem;
     margin: 2rem;
     font-size: 5rem;
-    padding: 0;
-    border: 0;
     grid-column-start: 1;
     grid-column-end: col2-start;
     grid-row-start: 3;
     grid-row-end: row4-start;
 }
 #icon2{
-    width: 5rem;
-    height: 5rem;
     margin: 2rem;
     font-size: 5rem;
-    padding: 0;
-    border: 0;
     grid-column-start: 2;
     grid-column-end: col3-start;
     grid-row-start: 1;
     grid-row-end: row2-start;
 }
 #icon3{
-    width: 5rem;
-    height: 5rem;
     margin: 2rem;
     font-size: 5rem;
-    padding: 0;
-    border: 0;
     grid-column-start: 2;
     grid-column-end: col3-start;
     grid-row-start: 2;
     grid-row-end: row3-start;
 }
 #icon4{
-    width: 5rem;
-    height: 5rem;
     margin: 2rem;
     font-size: 5rem;
-    padding: 0;
-    border: 0;
     grid-column-start: 2;
     grid-column-end: col3-start;
     grid-row-start: 3;
     grid-row-end: row4-start;
 }
 #icon5{
-    width: 5rem;
-    height: 5rem;
     margin: 2rem;
     font-size: 5rem;
-    padding: 0;
-    border: 0;
     grid-column-start: 2;
     grid-column-end: col3-start;
     grid-row-start: 4;
     grid-row-end: row5-start;
 }
 #icon6{
-    width: 5rem;
-    height: 5rem;
     margin: 2rem;
     font-size: 5rem;
-    padding: 0;
-    border: 0;
     grid-column-start: 3;
     grid-column-end: end;
     grid-row-start: 2;
     grid-row-end: row3-start;
 }
 #icon7{
-    width: 5rem;
-    height: 5rem;
     margin: 2rem;
     font-size: 5rem;
-    padding: 0;
-    border: 0;
     grid-column-start: 3;
     grid-column-end: end;
     grid-row-start: 3;
