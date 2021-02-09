@@ -159,7 +159,7 @@ var iconClasses = [
     "devicon-yarn-plain colored",
     "devicon-yii-plain colored",
     "devicon-yunohost-plain colored",
-    "devicon-zend-plai coloredn"
+    "devicon-zend-plain colored"
 ];
 function getCard(card) {
     var match = card[Math.floor(Math.random() * (card.length))];
@@ -170,7 +170,6 @@ function getCard(card) {
             newCard.push(c);
     }
     newCard[Math.floor(Math.random() * (newCard.length))] = match;
-    console.log(card, newCard);
     return { match: match, items: newCard };
 }
 function renderCard(cardNum, icons, checkClick) {
@@ -194,20 +193,20 @@ function renderCard(cardNum, icons, checkClick) {
         cards[cardNum].appendChild(container);
     });
 }
+function getRandomCard(size) {
+    var card = [];
+    while (card.length < size) {
+        var icon = iconClasses[Math.floor(Math.random() * (iconClasses.length))];
+        if (card.indexOf(icon) == -1)
+            card.push(icon);
+    }
+    return card;
+}
 var Engine = /** @class */ (function () {
     function Engine() {
         var _this = this;
         this.correctAnswers = 0;
-        this.firstCard = [
-            "devicon-materialui-plain colored",
-            "devicon-redhat-plain colored",
-            "devicon-sourcetree-original colored",
-            "devicon-typo3-plain colored",
-            "devicon-yunohost-plain colored",
-            "devicon-jquery-plain",
-            "devicon-linux-plain",
-            "devicon-mongodb-plain"
-        ];
+        this.firstCard = getRandomCard(8);
         this.nc = getCard(this.firstCard);
         this.secondCard = this.nc.items;
         this.match = this.nc.match;
@@ -227,9 +226,8 @@ var Engine = /** @class */ (function () {
                 renderCard(cardNum, newCard.items, _this.checkClick);
             }
             else
-                console.log('you fucked up!');
+                console.log('Nope!');
         };
-        var cards = document.querySelectorAll('.game-card');
         renderCard(0, this.firstCard, this.checkClick);
         renderCard(1, this.secondCard, this.checkClick);
     }
