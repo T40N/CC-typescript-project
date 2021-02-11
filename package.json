@@ -1,0 +1,18 @@
+{
+  "name": "engine",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "dependencies": {},
+  "devDependencies": {
+    "node-sass": "^5.0.0",
+    "sass": "^1.32.6"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scss:watch": "node-sass --watch styles/main.scss -o css",
+    "scss:build": "node-sass styles/main.scss -o css"
+  },
+  "author": "",
+  "license": "ISC"
+}
