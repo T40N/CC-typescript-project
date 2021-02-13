@@ -228,24 +228,36 @@ class Engine{
    }
 
    checkClick=(iconClass: string, cardNum: number)=>{
+      let ikon= document.getElementsByClassName(`${iconClass}`);
       if(this.match===iconClass){
          let newCard
 
          if(cardNum==0){
             newCard=getCard(this.secondCard)
             this.firstCard=newCard.items
-            this.match=newCard.match 
+            this.match=newCard.match
+            ikon[0].classList.add("correct"); 
          }
          else{
             newCard=getCard(this.firstCard)
             this.secondCard=newCard.items
             this.match=newCard.match 
+            ikon[1].classList.add("correct");
          }
-
-         renderCard(cardNum, newCard.items, this.checkClick)
+         setTimeout(() => {
+            renderCard(cardNum, newCard.items, this.checkClick);
+            if (cardNum == 0){
+                ikon[0].classList.remove("correct"); 
+            }
+        }, 500);
       }
-      else
-         console.log('you fucked up!');
+      else{            
+             ikon[0].classList.add("inCorrect");
+         setTimeout(() => {
+             ikon[0].classList.remove("inCorrect"); 
+         }, 500);
+         console.log('you fucked up!');    
+      }
    }
 }
 

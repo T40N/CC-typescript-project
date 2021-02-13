@@ -208,22 +208,36 @@ var Engine = /** @class */ (function () {
         this.secondCard = this.nc.items;
         this.match = this.nc.match;
         this.checkClick = function (iconClass, cardNum) {
+            var ikon= document.getElementsByClassName(`${iconClass}`);
             if (_this.match === iconClass) {
                 var newCard = void 0;
                 if (cardNum == 0) {
                     newCard = getCard(_this.secondCard);
                     _this.firstCard = newCard.items;
                     _this.match = newCard.match;
+                    ikon[0].classList.add("correct");
                 }
                 else {
                     newCard = getCard(_this.firstCard);
                     _this.secondCard = newCard.items;
                     _this.match = newCard.match;
+                    ikon[1].classList.add("correct");
                 }
-                renderCard(cardNum, newCard.items, _this.checkClick);
+                setTimeout(() => {
+                    renderCard(cardNum, newCard.items, _this.checkClick);
+                    if (cardNum == 0){
+                        ikon[0].classList.remove("correct"); 
+                    }
+                }, 500);
+                
             }
-            else
-                console.log('you fucked up!');
+            else{            
+                ikon[0].classList.add("inCorrect");
+            setTimeout(() => {
+                ikon[0].classList.remove("inCorrect"); 
+            }, 500);
+            console.log('you fucked up!');    
+            }
         };
         var cards = document.querySelectorAll('.game-card');
         renderCard(0, this.firstCard, this.checkClick);
