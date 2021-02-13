@@ -125,11 +125,11 @@ p {
 .correct {
   scale: 1.4;
   border-radius: 40%;
-  background-color: green; }
+  color: green !important; }
 
 .inCorrect {
   border-radius: 40%;
-  background-color: red; }
+  color: red !important; }
 
 #icon0 {
   align-self: center;
