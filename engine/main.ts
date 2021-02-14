@@ -152,16 +152,15 @@ const iconClasses=[
    "devicon-yarn-plain colored",
    "devicon-yii-plain colored",
    "devicon-yunohost-plain colored",
-   "devicon-zend-plai colored"
+   "devicon-zend-plain colored"
 ];
 
-interface Doubles{
+interface Card{
    match: string,
-   first: string[],
-   second: string[]
+   items: string[]
 }
 
-function getCard(card: string[]){
+function getCard(card: string[]): Card{
    
    const match=card[Math.floor(Math.random()*(card.length))]
    let newCard=[]
@@ -202,34 +201,34 @@ function renderCard(cardNum: number, icons: string[], checkClick){
    })
 }
 
+function getRandomCard(size: number): string[]{
+   let card: string[]=[]
+
+   while(card.length<size){
+      let icon=iconClasses[Math.floor(Math.random()*(iconClasses.length))]
+
+      if(card.indexOf(icon)==-1)
+         card.push(icon)
+   }
+   
+   return card
+}
+
 class Engine{
-   correctAnswers=0 
-   firstCard=[
-      "devicon-materialui-plain colored",
-      "devicon-redhat-plain colored",
-      "devicon-sourcetree-original colored",
-      "devicon-typo3-plain colored",
-      "devicon-yunohost-plain colored",
-      "devicon-jquery-plain",
-      "devicon-linux-plain",
-      "devicon-mongodb-plain"
-   ]
-
+   correctAnswers=0   
+   firstCard=getRandomCard(8)
    nc=getCard(this.firstCard)
-
    secondCard=this.nc.items
    match=this.nc.match
 
-   constructor(){      
-      const cards=document.querySelectorAll('.game-card')      
-
+   constructor(){
       renderCard(0, this.firstCard, this.checkClick)
       renderCard(1, this.secondCard, this.checkClick)
    }
 
-   checkClick=(iconClass: string, cardNum: number)=>{
+   checkClick=(iconClass: string, cardNum: number): void=>{
       if(this.match===iconClass){
-         let newCard
+         let newCard: Card
 
          if(cardNum==0){
             newCard=getCard(this.secondCard)
@@ -245,7 +244,7 @@ class Engine{
          renderCard(cardNum, newCard.items, this.checkClick)
       }
       else
-         console.log('you fucked up!');
+         console.log('Nope!');
    }
 }
 
