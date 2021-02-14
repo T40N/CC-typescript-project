@@ -154,5 +154,94 @@ const iconClasses = [
   "devicon-yunohost-plain colored",
   "devicon-zend-plain colored",
 ];
-
-module.exports = { iconClasses };
+function getCard(card) {
+  const match = card[Math.floor(Math.random() * card.length)];
+  let newCard = [];
+  while (newCard.length < card.length) {
+    let icon = iconClasses[Math.floor(Math.random() * iconClasses.length)];
+    if (
+      icon != match &&
+      newCard.indexOf(icon) == -1 &&
+      card.indexOf(icon) == -1
+    )
+      newCard.push(icon);
+  }
+  newCard[Math.floor(Math.random() * newCard.length)] = match;
+  return { match: match, items: newCard };
+}
+function renderCard(cardNum, icons, checkClick) {
+  const items = [...icons];
+  const cards = document.querySelectorAll(".game-card");
+  while (cards[cardNum].childNodes.length > 0) {
+    cards[cardNum].removeChild(cards[cardNum].childNodes[0]);
+  }
+  items.forEach((item) => {
+    const container = document.createElement("div");
+    const icon = document.createElement("i");
+    container.appendChild(icon);
+    icon.setAttribute("class", item);
+    container.setAttribute("id", `icon${items.indexOf(item)}`);
+    container.addEventListener("click", () => {
+      checkClick(item, cardNum);
+    });
+    cards[cardNum].appendChild(container);
+  });
+}
+function getRandomCard(size) {
+  let card = [];
+  while (card.length < size) {
+    let icon = iconClasses[Math.floor(Math.random() * iconClasses.length)];
+    if (card.indexOf(icon) == -1) card.push(icon);
+  }
+  return card;
+}
+class Engine {
+  constructor() {
+    this.missedAnswers = 0;
+    this.counter = 0;
+    this.firstCard = getRandomCard(8);
+    this.nc = getCard(this.firstCard);
+    this.secondCard = this.nc.items;
+    this.match = this.nc.match;
+    this.oldCard = -1;
+    this.checkClick = (iconClass, cardNum) => {
+      const icons = document.getElementsByClassName(`${iconClass}`);
+      if (this.match === iconClass) {
+        let newCard;
+        if (this.oldCard === -1) {
+          newCard = getCard(this.secondCard);
+          this.firstCard = newCard.items;
+          this.match = newCard.match;
+          icons[cardNum].classList.add("correct");
+          setTimeout(() => {
+            icons[cardNum].classList.remove("correct");
+            renderCard(0, newCard.items, this.checkClick);
+          }, 500);
+        } else {
+          newCard = getCard(this.firstCard);
+          this.secondCard = newCard.items;
+          this.match = newCard.match;
+          icons[cardNum].classList.add("correct");
+          setTimeout(() => {
+            icons[cardNum].classList.remove("correct");
+            renderCard(1, newCard.items, this.checkClick);
+          }, 500);
+        }
+        this.counter++;
+        console.log(this.counter);
+        this.oldCard *= -1;
+      } else {
+        icons[0].classList.add("inCorrect");
+        setTimeout(() => {
+          icons[0].classList.remove("inCorrect");
+        }, 500);
+        console.log("Nope!");
+        this.missedAnswers++;
+        console.log(this.missedAnswers);
+      }
+    };
+    renderCard(0, this.firstCard, this.checkClick);
+    renderCard(1, this.secondCard, this.checkClick);
+  }
+}
+const engine = new Engine();

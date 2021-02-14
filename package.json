@@ -5,7 +5,9 @@
   "main": "main.js",
   "dependencies": {},
   "devDependencies": {
+    "@types/node": "^14.14.27",
     "node-sass": "^5.0.0",
+    "prettier": "^2.2.1",
     "sass": "^1.32.6"
   },
   "scripts": {
