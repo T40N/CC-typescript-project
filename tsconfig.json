@@ -1,7 +1,7 @@
 {
-   "compilerOptions": {
-       "target": "ES6",
-       "outDir": "ts-build"
-   },
-   "files":["engine/main.ts"]
+  "compilerOptions": {
+    "target": "ES6",
+    "outDir": "ts-build"
+  },
+  "files": ["engine/main.ts"]
 }
