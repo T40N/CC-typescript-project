@@ -34,20 +34,24 @@ p {
 }
 
 .game-instruction {
-  width: 700px;
+  width: 70%;
   height: 370px;
   background: var(--blue-light);
   border: 1px solid var(--white);
   box-sizing: border-box;
   box-shadow: 10px 7px 4px rgba(0, 0, 0, 0.25);
   border-radius: 50px;
+  display: flex;
+  align-items: center;
 }
 
 .game-instruction p {
   font-size: 24px;
   font-weight: 800;
   text-align: center;
-  margin: 16%;
+  margin-left: auto;
+  margin-right: auto;
+
 }
 
 .game-card {
@@ -81,14 +85,15 @@ p {
 }
 
 .buttons {
-  margin-top: 133px;
+  margin-top: 3rem;
   display: flex;
 }
 
 .btn {
-  display: block;
-  width: 430px;
-  height: 148px;
+  display: flex;
+  align-items: center;
+  width: 300px;
+  height: 130px;
   background: #127681;
   box-shadow: 0;
   border-radius: 50px;
@@ -100,6 +105,7 @@ p {
   text-align: center;
   font-size: 24px;
   font-weight: bold;
+  
 }
 
 .small {
@@ -111,7 +117,8 @@ p {
 }
 
 .btn p {
-  margin: 15%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .btn:active {
@@ -254,3 +261,5 @@ p {
     display: inline-block;
   }
 }
+
+

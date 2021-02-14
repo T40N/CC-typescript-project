@@ -22,19 +22,22 @@ p {
   text-align: center; }
 
 .game-instruction {
-  width: 700px;
+  width: 70%;
   height: 370px;
   background: var(--blue-light);
   border: 1px solid var(--white);
   box-sizing: border-box;
   box-shadow: 10px 7px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 50px; }
+  border-radius: 50px;
+  display: flex;
+  align-items: center; }
 
 .game-instruction p {
   font-size: 24px;
   font-weight: 800;
   text-align: center;
-  margin: 16%; }
+  margin-left: auto;
+  margin-right: auto; }
 
 .game-card {
   margin-top: 40px;
@@ -63,13 +66,14 @@ p {
   margin: 0; }
 
 .buttons {
-  margin-top: 133px;
+  margin-top: 3rem;
   display: flex; }
 
 .btn {
-  display: block;
-  width: 430px;
-  height: 148px;
+  display: flex;
+  align-items: center;
+  width: 300px;
+  height: 130px;
   background: #127681;
   box-shadow: 0;
   border-radius: 50px;
@@ -90,7 +94,8 @@ p {
   margin-top: 54px; }
 
 .btn p {
-  margin: 15%; }
+  margin-left: auto;
+  margin-right: auto; }
 
 .btn:active {
   box-shadow: inset 7px 10px 4px rgba(0, 0, 0, 0.25); }
@@ -136,7 +141,7 @@ p {
   grid-row-start: 2;
   grid-row-end: row3-start; }
   #icon0 i {
-    transform: rotate(84deg) scale(0.90909);
+    transform: rotate(353deg) scale(0.45455);
     display: inline-block; }
 
 #icon1 {
@@ -147,7 +152,7 @@ p {
   grid-row-start: 3;
   grid-row-end: row4-start; }
   #icon1 i {
-    transform: rotate(354deg) scale(0.55556);
+    transform: rotate(57deg) scale(0.55556);
     display: inline-block; }
 
 #icon2 {
@@ -158,7 +163,7 @@ p {
   grid-row-start: 1;
   grid-row-end: row2-start; }
   #icon2 i {
-    transform: rotate(192deg) scale(0.45455);
+    transform: rotate(117deg) scale(0.90909);
     display: inline-block; }
 
 #icon3 {
@@ -169,7 +174,7 @@ p {
   grid-row-start: 2;
   grid-row-end: row3-start; }
   #icon3 i {
-    transform: rotate(153deg) scale(0.90909);
+    transform: rotate(229deg) scale(0.45455);
     display: inline-block; }
 
 #icon4 {
@@ -180,7 +185,7 @@ p {
   grid-row-start: 3;
   grid-row-end: row4-start; }
   #icon4 i {
-    transform: rotate(177deg) scale(0.90909);
+    transform: rotate(297deg) scale(0.90909);
     display: inline-block; }
 
 #icon5 {
@@ -191,7 +196,7 @@ p {
   grid-row-start: 4;
   grid-row-end: row5-start; }
   #icon5 i {
-    transform: rotate(114deg) scale(0.45455);
+    transform: rotate(256deg) scale(0.90909);
     display: inline-block; }
 
 #icon6 {
@@ -202,7 +207,7 @@ p {
   grid-row-start: 2;
   grid-row-end: row3-start; }
   #icon6 i {
-    transform: rotate(261deg) scale(0.90909);
+    transform: rotate(328deg) scale(0.90909);
     display: inline-block; }
 
 #icon7 {
@@ -213,5 +218,5 @@ p {
   grid-row-start: 3;
   grid-row-end: row4-start; }
   #icon7 i {
-    transform: rotate(164deg) scale(0.45455);
+    transform: rotate(333deg) scale(0.45455);
     display: inline-block; }
