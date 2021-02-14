@@ -152,7 +152,7 @@ const iconClasses=[
    "devicon-yarn-plain colored",
    "devicon-yii-plain colored",
    "devicon-yunohost-plain colored",
-   "devicon-zend-plai colored"
+   "devicon-zend-plain colored"
 ];
 
 interface Card{
