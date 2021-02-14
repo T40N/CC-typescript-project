@@ -1,12 +1,5 @@
-var __spreadArrays = (this && this.__spreadArrays) || function () {
-    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
-    for (var r = Array(s), k = 0, i = 0; i < il; i++)
-        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
-            r[k] = a[j];
-    return r;
-};
-var iconClasses = [
-    "devicon-aftereffects-plain colored",
+const iconClasses = [
+    "devicon-aftereffects-plaind colored",
     "devicon-amazonwebservices-original colored",
     "devicon-android-plain colored",
     "devicon-angularjs-plain colored",
@@ -159,13 +152,13 @@ var iconClasses = [
     "devicon-yarn-plain colored",
     "devicon-yii-plain colored",
     "devicon-yunohost-plain colored",
-    "devicon-zend-plain colored"
+    "devicon-zend-plai colored"
 ];
 function getCard(card) {
-    var match = card[Math.floor(Math.random() * (card.length))];
-    var newCard = [];
+    const match = card[Math.floor(Math.random() * (card.length))];
+    let newCard = [];
     while (newCard.length < 8) {
-        var c = iconClasses[Math.floor(Math.random() * (iconClasses.length))];
+        let c = iconClasses[Math.floor(Math.random() * (iconClasses.length))];
         if (c != match && newCard.indexOf(c) == -1 && card.indexOf(c) == -1)
             newCard.push(c);
     }
@@ -173,62 +166,72 @@ function getCard(card) {
     return { match: match, items: newCard };
 }
 function renderCard(cardNum, icons, checkClick) {
-    var items = __spreadArrays(icons);
-    var cards = document.querySelectorAll('.game-card');
+    const items = [...icons];
+    const cards = document.querySelectorAll('.game-card');
     while (cards[cardNum].childNodes.length > 0) {
         cards[cardNum].removeChild(cards[cardNum].childNodes[0]);
     }
-    items.forEach(function (item) {
-        var container = document.createElement('div');
-        var icon = document.createElement('i');
+    items.forEach(item => {
+        const container = document.createElement('div');
+        const icon = document.createElement('i');
         container.appendChild(icon);
         icon.setAttribute('class', item);
         container.setAttribute('id', `icon${items.indexOf(item)}`);
-        container.addEventListener('click', function () {
+        container.addEventListener('click', () => {
             checkClick(item, cardNum);
         });
         cards[cardNum].appendChild(container);
     });
 }
-var Engine = /** @class */ (function () {
-    function Engine() {
-        var _this = this;
+function getRandomCard(size) {
+    let card = [];
+    while (card.length < size) {
+        let icon = iconClasses[Math.floor(Math.random() * (iconClasses.length))];
+        if (card.indexOf(icon) == -1)
+            card.push(icon);
+    }
+    return card;
+}
+class Engine {
+    constructor() {
         this.correctAnswers = 0;
-        this.firstCard = [
-            "devicon-materialui-plain colored",
-            "devicon-redhat-plain colored",
-            "devicon-sourcetree-original colored",
-            "devicon-typo3-plain colored",
-            "devicon-yunohost-plain colored",
-            "devicon-jquery-plain",
-            "devicon-linux-plain",
-            "devicon-mongodb-plain"
-        ];
+        this.firstCard = getRandomCard(8);
         this.nc = getCard(this.firstCard);
         this.secondCard = this.nc.items;
         this.match = this.nc.match;
-        this.checkClick = function (iconClass, cardNum) {
-            if (_this.match === iconClass) {
-                var newCard = void 0;
+        this.checkClick = (iconClass, cardNum) => {
+            let icon = document.getElementsByClassName(`${iconClass}`);
+            if (this.match === iconClass) {
+                let newCard;
                 if (cardNum == 0) {
-                    newCard = getCard(_this.secondCard);
-                    _this.firstCard = newCard.items;
-                    _this.match = newCard.match;
+                    newCard = getCard(this.secondCard);
+                    this.firstCard = newCard.items;
+                    this.match = newCard.match;
+                    icon[0].classList.add("correct");
                 }
                 else {
-                    newCard = getCard(_this.firstCard);
-                    _this.secondCard = newCard.items;
-                    _this.match = newCard.match;
+                    newCard = getCard(this.firstCard);
+                    this.secondCard = newCard.items;
+                    this.match = newCard.match;
+                    icon[1].classList.add("correct");
                 }
-                renderCard(cardNum, newCard.items, _this.checkClick);
+                setTimeout(() => {
+                    renderCard(cardNum, newCard.items, this.checkClick);
+                    if (cardNum == 0) {
+                        icon[0].classList.remove("correct");
+                    }
+                }, 500);
             }
-            else
-                console.log('you fucked up!');
+            else {
+                icon[0].classList.add("inCorrect");
+                setTimeout(() => {
+                    icon[0].classList.remove("inCorrect");
+                }, 500);
+                console.log('Nope!');
+            }
         };
-        var cards = document.querySelectorAll('.game-card');
         renderCard(0, this.firstCard, this.checkClick);
         renderCard(1, this.secondCard, this.checkClick);
     }
-    return Engine;
-}());
-var engine = new Engine();
+}
+const engine = new Engine();

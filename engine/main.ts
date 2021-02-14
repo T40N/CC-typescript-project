@@ -161,7 +161,6 @@ interface Card{
 }
 
 function getCard(card: string[]): Card{
-   
    const match=card[Math.floor(Math.random()*(card.length))]
    let newCard=[]
 
@@ -172,7 +171,7 @@ function getCard(card: string[]): Card{
          newCard.push(c)
    }
 
-   newCard[Math.floor(Math.random()*(newCard.length))]=match
+   newCard[Math.floor(Math.random()*(newCard.length))]=match   
 
    return {match: match, items: newCard}
 }
@@ -202,13 +201,13 @@ function renderCard(cardNum: number, icons: string[], checkClick){
 }
 
 function getRandomCard(size: number): string[]{
-   let card: string[]=[]
+   let card: string[]=[];
 
    while(card.length<size){
-      let icon=iconClasses[Math.floor(Math.random()*(iconClasses.length))]
+      let icon=iconClasses[Math.floor(Math.random()*(iconClasses.length))];
 
       if(card.indexOf(icon)==-1)
-         card.push(icon)
+         card.push(icon);
    }
    
    return card
@@ -226,25 +225,37 @@ class Engine{
       renderCard(1, this.secondCard, this.checkClick)
    }
 
-   checkClick=(iconClass: string, cardNum: number): void=>{
+   checkClick=(iconClass: string, cardNum: number)=>{
+      let icon=document.getElementsByClassName(`${iconClass}`);
       if(this.match===iconClass){
-         let newCard: Card
+         let newCard: Card;
 
          if(cardNum==0){
-            newCard=getCard(this.secondCard)
-            this.firstCard=newCard.items
-            this.match=newCard.match 
+            newCard=getCard(this.secondCard);
+            this.firstCard=newCard.items;
+            this.match=newCard.match;
+            icon[0].classList.add("correct"); 
          }
          else{
-            newCard=getCard(this.firstCard)
-            this.secondCard=newCard.items
-            this.match=newCard.match 
+            newCard=getCard(this.firstCard);
+            this.secondCard=newCard.items;
+            this.match=newCard.match;
+            icon[1].classList.add("correct");
          }
-
-         renderCard(cardNum, newCard.items, this.checkClick)
+         setTimeout(() => {
+            renderCard(cardNum, newCard.items, this.checkClick);
+            if (cardNum == 0){
+                icon[0].classList.remove("correct"); 
+            }
+        }, 500);
       }
-      else
-         console.log('Nope!');
+      else{            
+         icon[0].classList.add("inCorrect");
+         setTimeout(() => {
+             icon[0].classList.remove("inCorrect"); 
+         }, 500);
+         console.log('Nope!');    
+      }
    }
 }
 

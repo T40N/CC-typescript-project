@@ -5,6 +5,7 @@
   "main": "main.js",
   "dependencies": {},
   "devDependencies": {
+    "@types/node": "^14.14.27",
     "node-sass": "^5.0.0",
     "sass": "^1.32.6"
   },
