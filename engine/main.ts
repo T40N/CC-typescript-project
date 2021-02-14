@@ -172,7 +172,7 @@ function getCard(card: string[]): Card{
          newCard.push(c)
    }
 
-   newCard[Math.floor(Math.random()*(newCard.length))]=match   
+   newCard[Math.floor(Math.random()*(newCard.length))]=match
 
    return {match: match, items: newCard}
 }
@@ -192,12 +192,7 @@ function renderCard(cardNum: number, icons: string[], checkClick){
 
       container.appendChild(icon)
       icon.setAttribute('class', item)
-
-      icon.style.fontSize='50px'
-      container.style.width='50px'
-      container.style.height='50px'
-      container.style.margin='10px'
-
+      container.setAttribute('id', `icon${items.indexOf(item)}`)
       container.addEventListener('click', ()=>{
          checkClick(item, cardNum)
       })

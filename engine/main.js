@@ -6,7 +6,7 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
     return r;
 };
 var iconClasses = [
-    "devicon-aftereffects-plaind colored",
+    "devicon-aftereffects-plain colored",
     "devicon-amazonwebservices-original colored",
     "devicon-android-plain colored",
     "devicon-angularjs-plain colored",
@@ -183,30 +183,27 @@ function renderCard(cardNum, icons, checkClick) {
         var icon = document.createElement('i');
         container.appendChild(icon);
         icon.setAttribute('class', item);
-        icon.style.fontSize = '50px';
-        container.style.width = '50px';
-        container.style.height = '50px';
-        container.style.margin = '10px';
+        container.setAttribute('id', `icon${items.indexOf(item)}`);
         container.addEventListener('click', function () {
             checkClick(item, cardNum);
         });
         cards[cardNum].appendChild(container);
     });
 }
-function getRandomCard(size) {
-    var card = [];
-    while (card.length < size) {
-        var icon = iconClasses[Math.floor(Math.random() * (iconClasses.length))];
-        if (card.indexOf(icon) == -1)
-            card.push(icon);
-    }
-    return card;
-}
 var Engine = /** @class */ (function () {
     function Engine() {
         var _this = this;
         this.correctAnswers = 0;
-        this.firstCard = getRandomCard(8);
+        this.firstCard = [
+            "devicon-materialui-plain colored",
+            "devicon-redhat-plain colored",
+            "devicon-sourcetree-original colored",
+            "devicon-typo3-plain colored",
+            "devicon-yunohost-plain colored",
+            "devicon-jquery-plain",
+            "devicon-linux-plain",
+            "devicon-mongodb-plain"
+        ];
         this.nc = getCard(this.firstCard);
         this.secondCard = this.nc.items;
         this.match = this.nc.match;
@@ -226,8 +223,9 @@ var Engine = /** @class */ (function () {
                 renderCard(cardNum, newCard.items, _this.checkClick);
             }
             else
-                console.log('Nope!');
+                console.log('you fucked up!');
         };
+        var cards = document.querySelectorAll('.game-card');
         renderCard(0, this.firstCard, this.checkClick);
         renderCard(1, this.secondCard, this.checkClick);
     }

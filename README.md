@@ -8,6 +8,13 @@ Mentorzy mogą dowolnie zmieniać zakres projektu lub zdecydować się na zupeł
 ![Szachy - Ekrany](./.github/images/SzachyEkrany.png)
 Proponowany projekt — Szachy (opis poniżej).
 
+### DEVBLE
+commands:
+- npm run scss:build - compile scss files to css
+- npm run scss:watch - watch mode
+Please add css code in main.scss file or use partials and @import them in main.scss
+Only main.scss will be compiled!
+
 ### Zasady wykonywania projektu (wspólne dla wszystkich grup i mentorów): 
 
 ##### W projekcie każdy z uczestników powinien zaprezentować praktyczną znajomość poniższych zagadnień związanych z TypeScript:
