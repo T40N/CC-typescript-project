@@ -124,11 +124,9 @@ p {
 
 .correct {
   scale: 1.4;
-  border-radius: 40%;
   color: green !important; }
 
 .inCorrect {
-  border-radius: 40%;
   color: red !important; }
 
 #icon0 {
