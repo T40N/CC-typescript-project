@@ -1,5 +1,5 @@
 const iconClasses = [
-    "devicon-aftereffects-plaind colored",
+    "devicon-aftereffects-plain colored",
     "devicon-amazonwebservices-original colored",
     "devicon-android-plain colored",
     "devicon-angularjs-plain colored",
@@ -152,15 +152,15 @@ const iconClasses = [
     "devicon-yarn-plain colored",
     "devicon-yii-plain colored",
     "devicon-yunohost-plain colored",
-    "devicon-zend-plai colored"
+    "devicon-zend-plain colored"
 ];
 function getCard(card) {
     const match = card[Math.floor(Math.random() * (card.length))];
     let newCard = [];
-    while (newCard.length < 8) {
-        let c = iconClasses[Math.floor(Math.random() * (iconClasses.length))];
-        if (c != match && newCard.indexOf(c) == -1 && card.indexOf(c) == -1)
-            newCard.push(c);
+    while (newCard.length < card.length) {
+        let icon = iconClasses[Math.floor(Math.random() * (iconClasses.length))];
+        if (icon != match && newCard.indexOf(icon) == -1 && card.indexOf(icon) == -1)
+            newCard.push(icon);
     }
     newCard[Math.floor(Math.random() * (newCard.length))] = match;
     return { match: match, items: newCard };
@@ -194,40 +194,49 @@ function getRandomCard(size) {
 }
 class Engine {
     constructor() {
-        this.correctAnswers = 0;
+        this.missedAnswers = 0;
+        this.counter = 0;
         this.firstCard = getRandomCard(8);
         this.nc = getCard(this.firstCard);
         this.secondCard = this.nc.items;
         this.match = this.nc.match;
+        this.oldCard = -1;
         this.checkClick = (iconClass, cardNum) => {
-            let icon = document.getElementsByClassName(`${iconClass}`);
+            const icons = document.getElementsByClassName(`${iconClass}`);
             if (this.match === iconClass) {
                 let newCard;
-                if (cardNum == 0) {
+                if (this.oldCard === -1) {
                     newCard = getCard(this.secondCard);
                     this.firstCard = newCard.items;
                     this.match = newCard.match;
-                    icon[0].classList.add("correct");
+                    icons[cardNum].classList.add("correct");
+                    setTimeout(() => {
+                        icons[cardNum].classList.remove("correct");
+                        renderCard(0, newCard.items, this.checkClick);
+                    }, 500);
                 }
                 else {
                     newCard = getCard(this.firstCard);
                     this.secondCard = newCard.items;
                     this.match = newCard.match;
-                    icon[1].classList.add("correct");
+                    icons[cardNum].classList.add("correct");
+                    setTimeout(() => {
+                        icons[cardNum].classList.remove("correct");
+                        renderCard(1, newCard.items, this.checkClick);
+                    }, 500);
                 }
-                setTimeout(() => {
-                    renderCard(cardNum, newCard.items, this.checkClick);
-                    if (cardNum == 0) {
-                        icon[0].classList.remove("correct");
-                    }
-                }, 500);
+                this.counter++;
+                console.log(this.counter);
+                this.oldCard *= -1;
             }
             else {
-                icon[0].classList.add("inCorrect");
+                icons[0].classList.add("inCorrect");
                 setTimeout(() => {
-                    icon[0].classList.remove("inCorrect");
+                    icons[0].classList.remove("inCorrect");
                 }, 500);
                 console.log('Nope!');
+                this.missedAnswers++;
+                console.log(this.missedAnswers);
             }
         };
         renderCard(0, this.firstCard, this.checkClick);
