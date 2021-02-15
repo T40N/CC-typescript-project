@@ -41,6 +41,17 @@ W projekcie zostały przez nas wykorzystane następujące technologie:
 - ikony pochodzą ze strony [DevIcon](https://devicon.dev/)
 - Projekt graficzny wykonany w programie [Figma](https://www.figma.com/file/ecu35ohB62NRav6cFWUNhO/programistdouble?node-id=0%3A1)
 
+### Screenshots
+Rozgrywka w grę DevBle
+![DevBle Game](./images/DevBleGame.png)
+
+Ekran końca gry
+![DevBle End Game](./images/DevBleEndGame.png)
+
+Gra jest w pełni responsywna. Poniżej widok na urządzeniu mobilnym
+![DevBle Mobile View](./images/DevMobileView.png)
+
+
 ### Rozwój projektu
 Mamy wiele pomysłów na dalszy rozwój tego projektu. Niektóre z nich to:
 - dodanie kilku trybów gry, np gra na czas, gra na różną ilość kart
