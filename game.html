@@ -22,27 +22,24 @@
   </head>
 
   <body>
-    <div class="container-flex">
-      <div class="container-row">
-        <div class="game-card"></div>
-        <div class="container-flex">
+    <div class="area">
+      <div class="firstRow">
           <header class="title">
-            <h1>Dev<span class="pr-gold">Ble</span></h1>
-          </header>
-          <div class="game-card"></div>
-        </div>
+            <h1 class="gameHead">Dev<span class="pr-gold">Ble</span></h1>
+          </header>  
       </div>
-    </div>
-    <div>
-      <footer class="game-tab">
-        <a href="./index.html" class="btn small">
-          <p>Back</p>
+      <div class="secondRow">
+        <div class="game-card first"></div>
+        <div class="game-card second"></div>
+      </div>
+      <div class="thirdRow">
+        <a href="./index.html" class="btn ">
+          <p class="small" >Back</p>
         </a>
-        <div class="score-display" id="score-display"></div>
-        <div class="btn small timer" id="timer"></div>
-      </footer>
-    </div>
-
+        <div class="score-display" id="score-display"> 12/35 </div>
+        <div class="btn small timer">00:15</div>
+      </div>
+    </div>  
     <script src="ts-build/main.js"></script>
   </body>
 </html>
