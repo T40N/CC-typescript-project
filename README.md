@@ -1,8 +1,4 @@
-**UWAGA! Zaczynając pracę nad projektem — nie róbcie forka.
-Jedna osoba z zespołu (np. Mentor) powinna użyć przycisku `Use this template` i dodać innych członków zespołu jako Collaborators do tego repozytorium.
-Mentorzy mogą dowolnie zmieniać zakres projektu lub zdecydować się na zupełnie inny temat.**
-
-# CodersCamp 2020 - Projekt TypeScript
+﻿# CodersCamp 2020 - Projekt TypeScript
 
 ## Gra DEVBLE - opis projektu
 
@@ -56,7 +52,7 @@ Ekran końca gry
 ![DevBle End Game](./images/DevBleEndGame.png)
 
 Gra jest w pełni responsywna. Poniżej widok na urządzeniu mobilnym
-![DevBle Mobile View](./images/DevMobileView.png)
+![DevBle Mobile View](./images/MobileView.png)
 
 
 ### Rozwój projektu
