@@ -158,6 +158,11 @@ interface Card {
   items: string[];
 }
 
+interface storageObj {
+  answers: number;
+  time: number;
+}
+
 function getCard(card: string[]): Card {
   const match = card[Math.floor(Math.random() * card.length)];
   let newCard = [];
@@ -214,9 +219,52 @@ function getRandomCard(size: number): string[] {
   return card;
 }
 
+class gameStorage {
+  storage;
+
+  constructor() {
+    this.storage = window.localStorage;
+  }
+
+  save(obj: storageObj): void {
+    if (Object.keys(obj).length !== 0) {
+      if (typeof obj.answers === "number") {
+        if (typeof obj.time === "number") {
+          if (this.storage.getItem("Score") === null) {
+            this.storage.setItem("Score", JSON.stringify(obj));
+            return JSON.parse(this.storage.getItem("Score"));
+          } else {
+            this.storage.removeItem("Score");
+            this.storage.setItem("Score", JSON.stringify(obj));
+            return JSON.parse(this.storage.getItem("Score"));
+          }
+        } else {
+          throw new Error("Time is not a number");
+        }
+      } else {
+        throw new Error("Answers is not a number");
+      }
+    } else {
+      throw new Error("Object is empty!");
+    }
+  }
+
+  read(): storageObj {
+    if (this.storage.getItem("Score") !== null) {
+      let storageItem = JSON.parse(this.storage.getItem("Score"));
+      return storageItem;
+    } else {
+      throw new Error("Storage is empty!");
+    }
+  }
+}
+
+const storage = new gameStorage();
+
 class Engine {
   missedAnswers = 0;
   counter = 0;
+  seconds = 0;
   firstCard = getRandomCard(8);
   nc = getCard(this.firstCard);
   secondCard = this.nc.items;
@@ -226,12 +274,45 @@ class Engine {
   constructor() {
     renderCard(0, this.firstCard, this.checkClick);
     renderCard(1, this.secondCard, this.checkClick);
+    this.timer();
+
+    document.querySelector("#score-display").innerHTML = `${this.counter} / 20`;
+    document.querySelector(".timer").innerHTML = "00:00";
   }
+
+  timer = () => {
+    setTimeout(() => {
+      this.seconds++;
+      this.timer();
+
+      let minutes =
+        Math.floor(this.seconds / 60) < 10
+          ? `0${Math.floor(this.seconds / 60)}`
+          : `${Math.floor(this.seconds / 60)}`;
+      let sec =
+        this.seconds % 60 < 10
+          ? `0${this.seconds % 60}`
+          : `${this.seconds % 60}`;
+
+      document.querySelector(".timer").innerHTML = minutes + ":" + sec;
+    }, 1000);
+  };
 
   checkClick = (iconClass: string, cardNum: number) => {
     const icons = document.getElementsByClassName(`${iconClass}`);
 
     if (this.match === iconClass) {
+      if (this.counter == 19) {
+        setTimeout(() => {
+          storage.save({
+            answers: this.missedAnswers,
+            time: this.seconds,
+          });
+
+          location.href = "score.html";
+        }, 500);
+      }
+
       let newCard: Card;
 
       if (this.oldCard === -1) {
@@ -259,8 +340,11 @@ class Engine {
       }
 
       this.counter++;
-      console.log(this.counter);
       this.oldCard *= -1;
+
+      document.querySelector(
+        "#score-display"
+      ).innerHTML = `${this.counter} / 20`;
     } else {
       icons[0].classList.add("inCorrect");
 
@@ -268,9 +352,7 @@ class Engine {
         icons[0].classList.remove("inCorrect");
       }, 500);
 
-      console.log("Nope!");
       this.missedAnswers++;
-      console.log(this.missedAnswers);
     }
   };
 }
