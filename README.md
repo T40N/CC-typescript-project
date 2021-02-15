@@ -2,7 +2,7 @@
 
 ## Gra DEVBLE - opis projektu
 
-### Live Demo:
+### Live Demo: https://arleta-jedrzejczak.github.io/CC-typescript-project/
 
 ### Zasady gry
 
