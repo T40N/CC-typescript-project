@@ -3,5 +3,5 @@
     "target": "ES6",
     "outDir": "ts-build"
   },
-  "files": ["engine/main.ts"]
+  "files": ["engine/main.ts", "engine/scoreDisplay.ts"]
 }

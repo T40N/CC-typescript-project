@@ -216,6 +216,41 @@ function getRandomCard(size: number): string[] {
   return card;
 }
 
+type storageObj = {
+  answers: number;
+  time: number;
+};
+
+class gameStorage {
+  storage;
+
+  constructor() {
+    this.storage = window.localStorage;
+  }
+
+  save(obj: storageObj): void {
+    if (Object.keys(obj).length !== 0) {
+      if (this.storage.getItem("Score") === null) {
+        this.storage.setItem("Score", JSON.stringify(obj));
+      } else {
+        this.storage.removeItem("Score");
+        this.storage.setItem("Score", JSON.stringify(obj));
+      }
+    } else {
+      throw new Error("Object is empty!");
+    }
+  }
+
+  read(): storageObj {
+    if (this.storage.getItem("Score") !== null) {
+      let storageItem = JSON.parse(this.storage.getItem("Score"));
+      return storageItem;
+    } else {
+      throw new Error("Storage is empty!");
+    }
+  }
+}
+
 class Engine {
   missedAnswers = 0;
   counter = 0;
@@ -278,3 +313,9 @@ class Engine {
 }
 
 const engine = new Engine();
+const gstorage = new gameStorage();
+let obj = {
+  answers: 5,
+  time: 98,
+};
+gstorage.save(obj);
