@@ -219,6 +219,7 @@ function getRandomCard(size: number): string[] {
 class Engine {
   missedAnswers = 0;
   counter = 0;
+  seconds = 0;
   firstCard = getRandomCard(8);
   nc = getCard(this.firstCard);
   secondCard = this.nc.items;
@@ -228,12 +229,28 @@ class Engine {
   constructor() {
     renderCard(0, this.firstCard, this.checkClick);
     renderCard(1, this.secondCard, this.checkClick);
+    this.timer();
   }
+
+  timer = () => {
+    setTimeout(() => {
+      this.seconds++;
+      this.timer();
+      console.log(this.seconds);
+    }, 1000);
+  };
 
   checkClick = (iconClass: string, cardNum: number) => {
     const icons = document.getElementsByClassName(`${iconClass}`);
 
     if (this.match === iconClass) {
+      if (this.counter == 19) {
+        setTimeout(() => {
+          // Here saving data to local storage
+          location.href = "score.html";
+        }, 500);
+      }
+
       let newCard: Card;
 
       if (this.oldCard === -1) {

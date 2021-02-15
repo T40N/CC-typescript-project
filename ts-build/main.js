@@ -199,14 +199,28 @@ class Engine {
   constructor() {
     this.missedAnswers = 0;
     this.counter = 0;
+    this.seconds = 0;
     this.firstCard = getRandomCard(8);
     this.nc = getCard(this.firstCard);
     this.secondCard = this.nc.items;
     this.match = this.nc.match;
     this.oldCard = -1;
+    this.timer = () => {
+      setTimeout(() => {
+        this.seconds++;
+        this.timer();
+        console.log(this.seconds);
+      }, 1000);
+    };
     this.checkClick = (iconClass, cardNum) => {
       const icons = document.getElementsByClassName(`${iconClass}`);
       if (this.match === iconClass) {
+        if (this.counter == 3) {
+          setTimeout(() => {
+            // Here saving data to local storage
+            location.href = "score.html";
+          }, 500);
+        }
         let newCard;
         if (this.oldCard === -1) {
           newCard = getCard(this.secondCard);
@@ -242,6 +256,9 @@ class Engine {
     };
     renderCard(0, this.firstCard, this.checkClick);
     renderCard(1, this.secondCard, this.checkClick);
+    this.timer();
   }
 }
 const engine = new Engine();
+
+// module.exports={getRandomCard, getCard}
