@@ -117,6 +117,7 @@ p {
 .score {
   font-size: 2rem;
   padding: 0.4rem;
+  
 }
 
 .play {
@@ -138,6 +139,8 @@ p {
   margin: auto;
   background: #127681;
   border-radius: 50px;
+  font-family: "Montserrat", sans-serif;
+  color: var(--white);
 }
 
 .score-display {
@@ -149,6 +152,7 @@ p {
   font-size: 2rem;
   padding: 1rem;
   margin: 1rem;
+  font-family: "Montserrat", sans-serif;
 }
 
 .game-tab {
