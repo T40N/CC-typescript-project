@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES6",
+    "target": "ES5",
     "outDir": "ts-build"
   },
   "files": ["engine/main.ts", "engine/scoreDisplay.ts"]

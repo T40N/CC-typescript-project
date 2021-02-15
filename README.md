@@ -5,8 +5,11 @@ Mentorzy mogą dowolnie zmieniać zakres projektu lub zdecydować się na zupeł
 # CodersCamp 2020 - Projekt TypeScript
 
 ## Gra DEVBLE - opis projektu
-### Live Demo: 
+
+### Live Demo:
+
 ### Zasady gry
+
 Devble to gra przeglądarkowa dla 1 gracza.
 Nazwa powstała od słów "development" oraz od nazwy popularnej gry karcianej, która była dla nas swego rodzaju inspiracją. W projekcie wykorzystaliśmy ikony związane z programowaniem dostępne na stronie [devicon.dev](https://devicon.dev/)
 Zasady gry są proste - na ekranie wyświetlane są dwie karty i należy znaleźć wspólny symbol na obu kartach.
@@ -18,40 +21,43 @@ W czasie rozgrywki mierzony jest czas, który następnie wyświetlany jest gracz
 Kiedy wylosowane zostaną dwie ostatnie karty z talii i gracz znajdzie prawidłowy symbol, gra kończy się i zostają wyświetlone wyniki rozgrywki.
 
 ### Komendy do uruchomienia projektu:
+
 - tsc -b - build projektu
 - npm run test - odpalenie testów
 - npm run scss:build - komplikacja plików scss do css
 - npm run scss:watch - komplikacja plików scss do css - watch mode
 
 ### Skład zespołu:
+
 - Mentor: Arleta Jędrzejczak
 - Stanisław Gardzielewski
 - Mariusz Olszewski
 - Bartosz Ratajczyk
 - Urszula Wilk
-  
+
 ### Użyte technologie
+
 W projekcie zostały przez nas wykorzystane następujące technologie:
+
 - TypeScript
 - HTML5
 - CSS (SASS)
 - Jest
 
 ### Rozwój projektu
+
 Mamy wiele pomysłów na dalszy rozwój tego projektu. Niektóre z nich to:
+
 - dodanie kilku trybów gry, np gra na czas, gra na różną ilość kart
 - dodanie różnych poziomów trudności, np. większa ilość symboli na każdej karcie, obracające się karty, te same ikony w różnych kolorach
 - dodanie trybu gry dla 2 graczy
 - różne paczki ikon do wyboru przez gracza
 - rozpoznawanie mowy (podajesz nazwę symbolu i silnik gry weryfikuje poprawność)
 
-
 **CodersCamp (coderscamp.edu.pl) - Największy otwarty kurs programowania webowego**
 
 ![Szachy - Ekrany](./.github/images/SzachyEkrany.png)
 Proponowany projekt — Szachy (opis poniżej).
-
-
 
 ### Zasady wykonywania projektu (wspólne dla wszystkich grup i mentorów):
 
