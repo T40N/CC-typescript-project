@@ -230,13 +230,23 @@ class gameStorage {
 
   save(obj: storageObj): void {
     if (Object.keys(obj).length !== 0) {
-      if (this.storage.getItem("Score") === null) {
-        this.storage.setItem("Score", JSON.stringify(obj));
-      } else {
-        this.storage.removeItem("Score");
-        this.storage.setItem("Score", JSON.stringify(obj));
+      if (typeof obj.answers === 'number'){
+        if (typeof obj.time === 'number'){
+          if (this.storage.getItem("Score") === null) {
+            this.storage.setItem("Score", JSON.stringify(obj));
+            return JSON.parse(this.storage.getItem("Score"));
+          } else {
+            this.storage.removeItem("Score");
+            this.storage.setItem("Score", JSON.stringify(obj));
+            return JSON.parse(this.storage.getItem("Score"));
+          }
+        }else{
+          throw new Error('Time is not a number');
+        }
+      }else{
+        throw new Error('Answers is not a number');
       }
-    } else {
+    }else{
       throw new Error("Object is empty!");
     }
   }
@@ -312,10 +322,6 @@ class Engine {
   };
 }
 
-const engine = new Engine();
-const gstorage = new gameStorage();
-let obj = {
-  answers: 5,
-  time: 98,
-};
-gstorage.save(obj);
+//const engine = new Engine();
+
+module.exports = gameStorage;
