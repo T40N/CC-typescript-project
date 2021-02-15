@@ -5,15 +5,20 @@
   --white: #f4f6ff;
 }
 
-html, body {
-  height:100%;
+html,
+body {
+  height: 100%;
 }
 html {
-  display:table; 
-  width:100%;
+  display: table;
+  width: 100%;
   font-size: calc(1rem + 1vw);
 }
-body {display:table-cell; text-align:center; vertical-align:middle;}
+body {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
 
 body {
   margin: 0 auto;
@@ -21,14 +26,19 @@ body {
   background-color: var(--bg-color);
 }
 
-h1, p {
+h1,
+p {
   font-family: "Montserrat", sans-serif;
   color: var(--white);
   margin: auto;
   font-size: 3rem;
 }
-
-.head{
+.game-instruction h2 {
+  font-family: "Montserrat", sans-serif;
+  color: var(--white);
+  margin: 0;
+}
+.head {
   font-size: 4.5rem;
 }
 
@@ -45,28 +55,28 @@ h1, p {
 .game-instruction p {
   font-size: 1rem;
   font-weight: 800;
-  padding: 5%;
+  padding: 3%;
 }
 
-.gameHead{
+.gameHead {
   font-size: 2.5rem;
   padding-top: 1rem;
 }
-.area{
+.area {
   display: flex;
   flex-direction: column;
 }
-.firstRow{
+.firstRow {
   justify-content: center;
 }
 
-.secondRow{
+.secondRow {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
 }
 
-.thirdRow{
+.thirdRow {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -92,7 +102,7 @@ h1, p {
   width: 80%;
 }
 
-.btn{
+.btn {
   margin: auto;
   background: #127681;
   border-radius: 50px;
@@ -101,20 +111,20 @@ h1, p {
   transition: box-shadow 0.05s ease-in-out;
   text-decoration: none;
 }
-.start{
+.start {
   width: 70vw;
 }
-.score{
+.score {
   font-size: 2rem;
   padding: 0.4rem;
 }
 
-.play{
+.play {
   font-size: 2rem;
   padding: 0.4rem;
 }
 
-.wrap{
+.wrap {
   margin-bottom: 2%;
 }
 
@@ -269,50 +279,71 @@ h1, p {
 }
 
 @media (max-width: 1500px) {
-  .game-card{
+  .game-card {
     width: 400px;
     height: 400px;
   }
-  .first{
+  .first {
     margin-top: -2rem;
   }
-  .gameHead{
+  .gameHead {
     margin-left: 5rem;
   }
-  #icon0,#icon1,#icon2,#icon3,#icon4,#icon5,#icon6,#icon7{
+  #icon0,
+  #icon1,
+  #icon2,
+  #icon3,
+  #icon4,
+  #icon5,
+  #icon6,
+  #icon7 {
     font-size: 3rem;
   }
 }
 
 @media (max-width: 800px) {
-  .game-card{
+  .game-card {
     width: 300px;
     height: 300px;
   }
-  .gameHead{
+  .gameHead {
     margin-left: 5rem;
   }
-  .first{
+  .first {
     margin-top: -2rem;
   }
-  #icon0,#icon1,#icon2,#icon3,#icon4,#icon5,#icon6,#icon7{
+  #icon0,
+  #icon1,
+  #icon2,
+  #icon3,
+  #icon4,
+  #icon5,
+  #icon6,
+  #icon7 {
     font-size: 2.5rem;
   }
 }
 @media (max-width: 600px) {
-  .game-card{
+  .game-card {
     width: 220px;
     height: 220px;
   }
-  .first{
+  .first {
     margin-top: 0.5rem;
   }
-  .second{
+  .second {
     margin-top: 10rem;
-    margin-left: -5rem ;
+    margin-left: -5rem;
     margin-bottom: 1rem;
   }
-  #icon0,#icon1,#icon2,#icon3,#icon4,#icon5,#icon6,#icon7{
+  #icon0,
+  #icon1,
+  #icon2,
+  #icon3,
+  #icon4,
+  #icon5,
+  #icon6,
+  #icon7 {
     font-size: 2rem;
   }
 }
