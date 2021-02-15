@@ -241,6 +241,7 @@ var gameStorage = /** @class */ (function () {
   };
   return gameStorage;
 })();
+var storage = new gameStorage();
 var Engine = /** @class */ (function () {
   function Engine() {
     var _this = this;
@@ -256,7 +257,15 @@ var Engine = /** @class */ (function () {
       setTimeout(function () {
         _this.seconds++;
         _this.timer();
-        console.log(_this.seconds);
+        var minutes =
+          Math.floor(_this.seconds / 60) < 10
+            ? "0" + Math.floor(_this.seconds / 60)
+            : "" + Math.floor(_this.seconds / 60);
+        var sec =
+          _this.seconds % 60 < 10
+            ? "0" + (_this.seconds % 60)
+            : "" + (_this.seconds % 60);
+        document.querySelector(".timer").innerHTML = minutes + ":" + sec;
       }, 1000);
     };
     this.checkClick = function (iconClass, cardNum) {
@@ -264,7 +273,10 @@ var Engine = /** @class */ (function () {
       if (_this.match === iconClass) {
         if (_this.counter == 19) {
           setTimeout(function () {
-            // Here saving data to local storage
+            storage.save({
+              answers: _this.missedAnswers,
+              time: _this.seconds,
+            });
             location.href = "score.html";
           }, 500);
         }
@@ -289,23 +301,23 @@ var Engine = /** @class */ (function () {
           }, 500);
         }
         _this.counter++;
-        console.log(_this.counter);
         _this.oldCard *= -1;
+        document.querySelector("#score-display").innerHTML =
+          _this.counter + " / 20";
       } else {
         icons[0].classList.add("inCorrect");
         setTimeout(function () {
           icons[0].classList.remove("inCorrect");
         }, 500);
-        console.log("Nope!");
         _this.missedAnswers++;
-        console.log(_this.missedAnswers);
       }
     };
     renderCard(0, this.firstCard, this.checkClick);
     renderCard(1, this.secondCard, this.checkClick);
     this.timer();
+    document.querySelector("#score-display").innerHTML = this.counter + " / 20";
+    document.querySelector(".timer").innerHTML = "00:00";
   }
   return Engine;
 })();
 var engine = new Engine();
-module.exports = gameStorage;

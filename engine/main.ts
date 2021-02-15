@@ -160,6 +160,11 @@ interface Card {
   items: string[];
 }
 
+interface storageObj {
+  answers: number;
+  time: number;
+}
+
 function getCard(card: string[]): Card {
   const match = card[Math.floor(Math.random() * card.length)];
   let newCard = [];
@@ -216,11 +221,6 @@ function getRandomCard(size: number): string[] {
   return card;
 }
 
-type storageObj = {
-  answers: number;
-  time: number;
-};
-
 class gameStorage {
   storage;
 
@@ -261,6 +261,8 @@ class gameStorage {
   }
 }
 
+const storage = new gameStorage();
+
 class Engine {
   missedAnswers = 0;
   counter = 0;
@@ -275,13 +277,26 @@ class Engine {
     renderCard(0, this.firstCard, this.checkClick);
     renderCard(1, this.secondCard, this.checkClick);
     this.timer();
+
+    document.querySelector("#score-display").innerHTML = `${this.counter} / 20`;
+    document.querySelector(".timer").innerHTML = "00:00";
   }
 
   timer = () => {
     setTimeout(() => {
       this.seconds++;
       this.timer();
-      console.log(this.seconds);
+
+      let minutes =
+        Math.floor(this.seconds / 60) < 10
+          ? `0${Math.floor(this.seconds / 60)}`
+          : `${Math.floor(this.seconds / 60)}`;
+      let sec =
+        this.seconds % 60 < 10
+          ? `0${this.seconds % 60}`
+          : `${this.seconds % 60}`;
+
+      document.querySelector(".timer").innerHTML = minutes + ":" + sec;
     }, 1000);
   };
 
@@ -291,7 +306,11 @@ class Engine {
     if (this.match === iconClass) {
       if (this.counter == 19) {
         setTimeout(() => {
-          // Here saving data to local storage
+          storage.save({
+            answers: this.missedAnswers,
+            time: this.seconds,
+          });
+
           location.href = "score.html";
         }, 500);
       }
@@ -323,8 +342,11 @@ class Engine {
       }
 
       this.counter++;
-      console.log(this.counter);
       this.oldCard *= -1;
+
+      document.querySelector(
+        "#score-display"
+      ).innerHTML = `${this.counter} / 20`;
     } else {
       icons[0].classList.add("inCorrect");
 
@@ -332,13 +354,9 @@ class Engine {
         icons[0].classList.remove("inCorrect");
       }, 500);
 
-      console.log("Nope!");
       this.missedAnswers++;
-      console.log(this.missedAnswers);
     }
   };
 }
 
 const engine = new Engine();
-
-module.exports = gameStorage;
