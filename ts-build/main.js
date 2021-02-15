@@ -1,4 +1,14 @@
-const iconClasses = [
+var __spreadArrays =
+  (this && this.__spreadArrays) ||
+  function () {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++)
+      s += arguments[i].length;
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+      for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+        r[k] = a[j];
+    return r;
+  };
+var iconClasses = [
   "devicon-aftereffects-plain colored",
   "devicon-amazonwebservices-original colored",
   "devicon-android-plain colored",
@@ -155,10 +165,10 @@ const iconClasses = [
   "devicon-zend-plain colored",
 ];
 function getCard(card) {
-  const match = card[Math.floor(Math.random() * card.length)];
-  let newCard = [];
+  var match = card[Math.floor(Math.random() * card.length)];
+  var newCard = [];
   while (newCard.length < card.length) {
-    let icon = iconClasses[Math.floor(Math.random() * iconClasses.length)];
+    var icon = iconClasses[Math.floor(Math.random() * iconClasses.length)];
     if (
       icon != match &&
       newCard.indexOf(icon) == -1 &&
@@ -170,33 +180,70 @@ function getCard(card) {
   return { match: match, items: newCard };
 }
 function renderCard(cardNum, icons, checkClick) {
-  const items = [...icons];
-  const cards = document.querySelectorAll(".game-card");
+  var items = __spreadArrays(icons);
+  var cards = document.querySelectorAll(".game-card");
   while (cards[cardNum].childNodes.length > 0) {
     cards[cardNum].removeChild(cards[cardNum].childNodes[0]);
   }
-  items.forEach((item) => {
-    const container = document.createElement("div");
-    const icon = document.createElement("i");
+  items.forEach(function (item) {
+    var container = document.createElement("div");
+    var icon = document.createElement("i");
     container.appendChild(icon);
     icon.setAttribute("class", item);
-    container.setAttribute("id", `icon${items.indexOf(item)}`);
-    container.addEventListener("click", () => {
+    container.setAttribute("id", "icon" + items.indexOf(item));
+    container.addEventListener("click", function () {
       checkClick(item, cardNum);
     });
     cards[cardNum].appendChild(container);
   });
 }
 function getRandomCard(size) {
-  let card = [];
+  var card = [];
   while (card.length < size) {
-    let icon = iconClasses[Math.floor(Math.random() * iconClasses.length)];
+    var icon = iconClasses[Math.floor(Math.random() * iconClasses.length)];
     if (card.indexOf(icon) == -1) card.push(icon);
   }
   return card;
 }
-class Engine {
-  constructor() {
+var gameStorage = /** @class */ (function () {
+  function gameStorage() {
+    this.storage = window.localStorage;
+  }
+  gameStorage.prototype.save = function (obj) {
+    if (Object.keys(obj).length !== 0) {
+      if (typeof obj.answers === "number") {
+        if (typeof obj.time === "number") {
+          if (this.storage.getItem("Score") === null) {
+            this.storage.setItem("Score", JSON.stringify(obj));
+            return JSON.parse(this.storage.getItem("Score"));
+          } else {
+            this.storage.removeItem("Score");
+            this.storage.setItem("Score", JSON.stringify(obj));
+            return JSON.parse(this.storage.getItem("Score"));
+          }
+        } else {
+          throw new Error("Time is not a number");
+        }
+      } else {
+        throw new Error("Answers is not a number");
+      }
+    } else {
+      throw new Error("Object is empty!");
+    }
+  };
+  gameStorage.prototype.read = function () {
+    if (this.storage.getItem("Score") !== null) {
+      var storageItem = JSON.parse(this.storage.getItem("Score"));
+      return storageItem;
+    } else {
+      throw new Error("Storage is empty!");
+    }
+  };
+  return gameStorage;
+})();
+var Engine = /** @class */ (function () {
+  function Engine() {
+    var _this = this;
     this.missedAnswers = 0;
     this.counter = 0;
     this.seconds = 0;
@@ -205,60 +252,60 @@ class Engine {
     this.secondCard = this.nc.items;
     this.match = this.nc.match;
     this.oldCard = -1;
-    this.timer = () => {
-      setTimeout(() => {
-        this.seconds++;
-        this.timer();
-        console.log(this.seconds);
+    this.timer = function () {
+      setTimeout(function () {
+        _this.seconds++;
+        _this.timer();
+        console.log(_this.seconds);
       }, 1000);
     };
-    this.checkClick = (iconClass, cardNum) => {
-      const icons = document.getElementsByClassName(`${iconClass}`);
-      if (this.match === iconClass) {
-        if (this.counter == 3) {
-          setTimeout(() => {
+    this.checkClick = function (iconClass, cardNum) {
+      var icons = document.getElementsByClassName("" + iconClass);
+      if (_this.match === iconClass) {
+        if (_this.counter == 19) {
+          setTimeout(function () {
             // Here saving data to local storage
             location.href = "score.html";
           }, 500);
         }
-        let newCard;
-        if (this.oldCard === -1) {
-          newCard = getCard(this.secondCard);
-          this.firstCard = newCard.items;
-          this.match = newCard.match;
+        var newCard_1;
+        if (_this.oldCard === -1) {
+          newCard_1 = getCard(_this.secondCard);
+          _this.firstCard = newCard_1.items;
+          _this.match = newCard_1.match;
           icons[cardNum].classList.add("correct");
-          setTimeout(() => {
+          setTimeout(function () {
             icons[cardNum].classList.remove("correct");
-            renderCard(0, newCard.items, this.checkClick);
+            renderCard(0, newCard_1.items, _this.checkClick);
           }, 500);
         } else {
-          newCard = getCard(this.firstCard);
-          this.secondCard = newCard.items;
-          this.match = newCard.match;
+          newCard_1 = getCard(_this.firstCard);
+          _this.secondCard = newCard_1.items;
+          _this.match = newCard_1.match;
           icons[cardNum].classList.add("correct");
-          setTimeout(() => {
+          setTimeout(function () {
             icons[cardNum].classList.remove("correct");
-            renderCard(1, newCard.items, this.checkClick);
+            renderCard(1, newCard_1.items, _this.checkClick);
           }, 500);
         }
-        this.counter++;
-        console.log(this.counter);
-        this.oldCard *= -1;
+        _this.counter++;
+        console.log(_this.counter);
+        _this.oldCard *= -1;
       } else {
         icons[0].classList.add("inCorrect");
-        setTimeout(() => {
+        setTimeout(function () {
           icons[0].classList.remove("inCorrect");
         }, 500);
         console.log("Nope!");
-        this.missedAnswers++;
-        console.log(this.missedAnswers);
+        _this.missedAnswers++;
+        console.log(_this.missedAnswers);
       }
     };
     renderCard(0, this.firstCard, this.checkClick);
     renderCard(1, this.secondCard, this.checkClick);
     this.timer();
   }
-}
-const engine = new Engine();
-
-// module.exports={getRandomCard, getCard}
+  return Engine;
+})();
+var engine = new Engine();
+module.exports = gameStorage;
