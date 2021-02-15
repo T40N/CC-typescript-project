@@ -84,7 +84,7 @@ p {
 
 .game-card {
   border-radius: 50%;
-  background-color: var(--blue-light);
+  background-color:  #c8d5d6;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr;
@@ -135,6 +135,9 @@ p {
 .small {
   padding: 0.4rem;
   font-size: 2rem;
+  margin: auto;
+  background: #127681;
+  border-radius: 50px;
 }
 
 .score-display {
@@ -198,6 +201,7 @@ p {
 #icon2 {
   align-self: center;
   justify-self: center;
+  cursor: pointer;
   grid-column-start: 2;
   grid-column-end: 2;
   grid-row-start: 1;
@@ -278,6 +282,51 @@ p {
   display: inline-block;
 }
 
+@media (min-width: 2200px) {
+  .game-card {
+    width: 900px;
+    height: 900px;
+  }
+  .first {
+    margin-top: -2rem;
+  }
+  .gameHead {
+    margin-left: 5rem;
+  }
+  #icon0,
+  #icon1,
+  #icon2,
+  #icon3,
+  #icon4,
+  #icon5,
+  #icon6,
+  #icon7 {
+    font-size: 4rem;
+  }
+}
+
+@media (max-width: 2200px) {
+  .game-card {
+    width: 500px;
+    height: 500px;
+  }
+  .first {
+    margin-top: -2rem;
+  }
+  .gameHead {
+    margin-left: 5rem;
+  }
+  #icon0,
+  #icon1,
+  #icon2,
+  #icon3,
+  #icon4,
+  #icon5,
+  #icon6,
+  #icon7 {
+    font-size: 3rem;
+  }
+}
 @media (max-width: 1500px) {
   .game-card {
     width: 400px;
