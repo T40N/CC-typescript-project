@@ -259,3 +259,5 @@ class Engine {
     }
 }
 const engine = new Engine();
+
+//module.exports={getRandomCard, getCard}
