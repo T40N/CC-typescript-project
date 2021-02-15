@@ -6,9 +6,9 @@ function scoreDisplay() {
     let seconds = Math.floor(score.time % 60);
     let answeredTime = `${minutes}:${seconds}`;
     let scoreDiv = document.getElementById("scoreDisplay");
-    scoreDiv.innerHTML = `<h1>False answers: ${score.answers} Time: ${answeredTime}`;
+    scoreDiv.innerHTML = `<p>False answers: ${score.answers} Time: ${answeredTime}</p>`;
   } else {
-    scoreDiv.innerHTML = `Coś poszło nie tak wynik nie został zapisany`;
+    scoreDiv.innerHTML = `<p>Coś poszło nie tak wynik nie został zapisany</p>`;
   }
 }
 

@@ -7,10 +7,10 @@ function scoreDisplay() {
     var answeredTime = minutes + ":" + seconds;
     var scoreDiv_1 = document.getElementById("scoreDisplay");
     scoreDiv_1.innerHTML =
-      "<h1>False answers: " + score.answers + " Time: " + answeredTime;
+      "<p>False answers: " + score.answers + " Time: " + answeredTime + "</p>";
   } else {
     scoreDiv.innerHTML =
-      "Co\u015B posz\u0142o nie tak wynik nie zosta\u0142 zapisany";
+      "<p>Co\u015B posz\u0142o nie tak wynik nie zosta\u0142 zapisany</p>";
   }
 }
 scoreDisplay();
